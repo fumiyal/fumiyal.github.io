@@ -1,6 +1,5 @@
 {
   "watch": ["bundle.js"],
   "ext": "js,html,css",
-  "ignore": ["./**/*.test.js"],
-  "exec": ". ./push.sh"
+  "exec": "./push.sh"
 }
