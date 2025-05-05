@@ -1,5 +1,0 @@
-{
-  "watch": ["bundle.js"],
-  "ext": "js,html,css",
-  "exec": "./push.sh"
-}
