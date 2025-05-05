@@ -1,0 +1,11 @@
+
+session_name: nextjs-regexg-docker
+windows:
+  - window_name: main
+    layout: tiled
+    panes:
+      - |
+        docker-compose down
+        (cd ../nextui-dashboard-template/ && npm run build) && \
+          (cd ../nextui-dashboard-template/ && cat .env .env.prod > .env.docker) && \
+          docker-compose up

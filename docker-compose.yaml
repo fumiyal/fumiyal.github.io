@@ -1,0 +1,42 @@
+
+version: "3"
+services:
+
+  nextjs:
+    # build: .
+    image: node:20.8.1
+    ports:
+      - "30254:3000"
+    volumes:
+      - ../nextui-dashboard-template:/app
+      - ./../nextui-dashboard-template/.env.docker:/app/.env
+    working_dir: /app
+    environment:
+      - NEXT_PUBLIC_APP_DIST=.next.prod
+    entrypoint: ["sh", "-c", "npm run start"]
+    networks:
+      - my-network
+
+  mongodb:
+    image: mongo:7.0.3
+    restart: always
+    networks:
+      - my-network
+
+  ruby: 
+    image: ruby:3.2.0
+    volumes:
+      - ../regexp_examples_dev:/app
+    working_dir: /app
+    command: bundle exec ruby app.rb
+    environment:
+      - BUNDLE_PATH=./vendor/bundle
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  exclude:
